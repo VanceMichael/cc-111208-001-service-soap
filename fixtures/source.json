@@ -23,6 +23,22 @@
         },
         "body": "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Body><s:Fault><s:Code><s:Value>s:Receiver</s:Value></s:Code></s:Fault></s:Body></s:Envelope>"
       }
+    ],
+    "POST /receive-demo": [
+      {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/soap+xml"
+        },
+        "base64": "PHM6RW52ZWxvcGUgeG1sbnM6cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMy8wNS9zb2FwLWVudmVsb3BlIiB4bWxuczpyPSJ1cm46c2VydmljZTpyZWNlaXB0OjEiIHhtbG5zOnhvcD0iaHR0cDovL3d3dy53My5vcmcvMjAwNC8wOC94b3AvaW5jbHVkZSI+PHM6Qm9keT48cjpCYXRjaCBpZD0iQjEiIG5leHQ9ImRvbmUiPjxyOlJlY2VpcHQgaWQ9IlcxIiByZXZpc2lvbj0iMiI+PHI6UGhvdG8gc2hhMjU2PSI5MzkyYWZkMjFhNmRkNmNiOWRiYWJlNzg3MDg4MWIyZTc1NTFjZWM0M2Q5Zjc5NGFhMTUyZGM3ZTE1NzY1M2Q5IiBsZW5ndGg9IjMyIj48eG9wOkluY2x1ZGUgaHJlZj0iY2lkOnBob3RvJTQwbG9jYWwiLz48L3I6UGhvdG8+PC9yOlJlY2VpcHQ+PC9yOkJhdGNoPjwvczpCb2R5PjwvczpFbnZlbG9wZT4="
+      },
+      {
+        "status": 200,
+        "headers": {
+          "Content-Type": "multipart/related; boundary=\"part-boundary\"; start=\"<root@local>\"; type=\"application/xop+xml\""
+        },
+        "base64": "LS1wYXJ0LWJvdW5kYXJ5DQpDb250ZW50LVR5cGU6IGltYWdlL2pwZWcNCkNvbnRlbnQtSUQ6IDxwaG90b0Bsb2NhbD4NCg0KcGhvdG8tYnl0ZXMNCi0tYWxtb3N0LWEtYm91bmRhcnkNCi0tcGFydC1ib3VuZGFyeQ0KQ29udGVudC1UeXBlOiBhcHBsaWNhdGlvbi94b3AreG1sOyB0eXBlPSJhcHBsaWNhdGlvbi9zb2FwK3htbCINCkNvbnRlbnQtSUQ6IDxyb290QGxvY2FsPg0KDQo8czpFbnZlbG9wZSB4bWxuczpzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAzLzA1L3NvYXAtZW52ZWxvcGUiIHhtbG5zOnI9InVybjpzZXJ2aWNlOnJlY2VpcHQ6MSIgeG1sbnM6eG9wPSJodHRwOi8vd3d3LnczLm9yZy8yMDA0LzA4L3hvcC9pbmNsdWRlIj48czpCb2R5PjxyOkJhdGNoIGlkPSJCMiIgbmV4dD0iZG9uZSI+PHI6UmVjZWlwdCBpZD0iVzEiIHJldmlzaW9uPSIyIj48cjpQaG90byBzaGEyNTY9IjkzOTJhZmQyMWE2ZGQ2Y2I5ZGJhYmU3ODcwODgxYjJlNzU1MWNlYzQzZDlmNzk0YWExNTJkYzdlMTU3NjUzZDkiIGxlbmd0aD0iMzIiPjx4b3A6SW5jbHVkZSBocmVmPSJjaWQ6cGhvdG8lNDBsb2NhbCIvPjwvcjpQaG90bz48L3I6UmVjZWlwdD48L3I6QmF0Y2g+PC9zOkJvZHk+PC9zOkVudmVsb3BlPg0KLS1wYXJ0LWJvdW5kYXJ5LS0NCg=="
+      }
     ]
   }
 }

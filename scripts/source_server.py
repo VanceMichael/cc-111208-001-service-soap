@@ -26,6 +26,27 @@ class ReplayHandler(BaseHTTPRequestHandler):
     def log_message(self, *args):
         pass
 
+    def _select(self, choices, key, incoming):
+        for index, candidate in enumerate(choices):
+            rules = candidate.get('match')
+            if not rules:
+                continue
+            if 'contains' in rules and rules['contains'].encode() not in incoming:
+                continue
+            if 'not_contains' in rules and rules['not_contains'].encode() in incoming:
+                continue
+            if 'times' in rules:
+                usage = self.server.counts.get(key + '#match' + str(index), 0)
+                if usage >= int(rules['times']):
+                    continue
+                self.server.counts[key + '#match' + str(index)] = usage + 1
+            return candidate
+        plain = [candidate for candidate in choices if 'match' not in candidate]
+        if plain:
+            offset = self.server.counts.get(key, 0)
+            return plain[min(offset, len(plain) - 1)]
+        return None
+
     def dispatch(self):
         length = int(self.headers.get('Content-Length', '0'))
         if length > 1048576:
@@ -43,8 +64,10 @@ class ReplayHandler(BaseHTTPRequestHandler):
             if not choices:
                 self.respond(404, {}, b'unknown local source route')
                 return
-            offset = self.server.counts.get(key, 0)
-            choice = choices[min(offset, len(choices) - 1)]
+            choice = self._select(choices, key, incoming)
+            if choice is None:
+                self.respond(409, {}, b'no replay route matches request state')
+                return
             expected = choice.get('expect', {})
             for name, value in expected.get('headers', {}).items():
                 if self.headers.get(name) != value:
@@ -56,7 +79,8 @@ class ReplayHandler(BaseHTTPRequestHandler):
             if 'contains' in expected and expected['contains'].encode() not in incoming:
                 self.respond(400, {}, b'request body mismatch')
                 return
-            self.server.counts[key] = offset + 1
+            if 'match' not in choice:
+                self.server.counts[key] = self.server.counts.get(key, 0) + 1
             if 'file' in choice:
                 payload = (self.server.root / choice['file']).read_bytes()
             elif 'base64' in choice:
