@@ -1,0 +1,28 @@
+{
+  "routes": {
+    "POST /receipts": [
+      {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/soap+xml"
+        },
+        "body": "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:r=\"urn:service:receipt:1\" xmlns:xop=\"http://www.w3.org/2004/08/xop/include\"><s:Body><r:Batch id=\"B1\" next=\"done\"><r:Receipt id=\"W1\" revision=\"2\"><r:Photo sha256=\"e88d8730ab5e9d0f9d64e1e61c6cd864e8db00b12746b412f3940f109c31b756\" length=\"34\"><xop:Include href=\"cid:photo%40local\"/></r:Photo></r:Receipt></r:Batch></s:Body></s:Envelope>"
+      },
+      {
+        "status": 200,
+        "headers": {
+          "Content-Type": "multipart/related; boundary=\"part-boundary\"; start=\"<root@local>\"; type=\"application/xop+xml\""
+        },
+        "base64": "LS1wYXJ0LWJvdW5kYXJ5DQpDb250ZW50LVR5cGU6IGltYWdlL2pwZWcNCkNvbnRlbnQtSUQ6IDxwaG90b0Bsb2NhbD4NCg0KcGhvdG8tYnl0ZXNcclxuLS1hbG1vc3QtYS1ib3VuZGFyeQ0KLS1wYXJ0LWJvdW5kYXJ5DQpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL3hvcCt4bWw7IHR5cGU9ImFwcGxpY2F0aW9uL3NvYXAreG1sIg0KQ29udGVudC1JRDogPHJvb3RAbG9jYWw+DQoNCjxzOkVudmVsb3BlIHhtbG5zOnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDMvMDUvc29hcC1lbnZlbG9wZSIgeG1sbnM6cj0idXJuOnNlcnZpY2U6cmVjZWlwdDoxIiB4bWxuczp4b3A9Imh0dHA6Ly93d3cudzMub3JnLzIwMDQvMDgveG9wL2luY2x1ZGUiPjxzOkJvZHk+PHI6QmF0Y2ggaWQ9IkIxIiBuZXh0PSJkb25lIj48cjpSZWNlaXB0IGlkPSJXMSIgcmV2aXNpb249IjIiPjxyOlBob3RvIHNoYTI1Nj0iZTg4ZDg3MzBhYjVlOWQwZjlkNjRlMWU2MWM2Y2Q4NjRlOGRiMDBiMTI3NDZiNDEyZjM5NDBmMTA5YzMxYjc1NiIgbGVuZ3RoPSIzNCI+PHhvcDpJbmNsdWRlIGhyZWY9ImNpZDpwaG90byU0MGxvY2FsIi8+PC9yOlBob3RvPjwvcjpSZWNlaXB0PjwvcjpCYXRjaD48L3M6Qm9keT48L3M6RW52ZWxvcGU+DQotLXBhcnQtYm91bmRhcnktLQ0K"
+      }
+    ],
+    "POST /fault": [
+      {
+        "headers": {
+          "Content-Type": "application/soap+xml"
+        },
+        "body": "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\"><s:Body><s:Fault><s:Code><s:Value>s:Receiver</s:Value></s:Code></s:Fault></s:Body></s:Envelope>"
+      }
+    ]
+  }
+}
